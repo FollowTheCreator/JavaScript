@@ -1,4 +1,7 @@
 var ArrayLib = {
+    chain(array){
+        return new ArrayLibChain(array);
+    },
     take(array, n){
         var answer = [];
         for(var i = 0; i < n && i < array.length; i++){
@@ -53,4 +56,73 @@ var ArrayLib = {
             func(array[i]);
         }
     }
+}
+
+function ArrayLibChain(array){
+    this.array = array;
+
+    this.take = function(n){
+        var answer = [];
+
+        for(var i = 0; i < n && i < this.array.length; i++){
+            answer.push(this.array[i]);
+        }
+
+        return new ArrayLibChain(answer);
+    };
+
+    this.skip = function(n){
+        var answer = [];
+        if(n < 0){
+            n = 0;
+        }
+
+        for(var i = n; i < this.array.length; i++){
+            answer.push(this.array[i]);
+        }
+
+        return new ArrayLibChain(answer);
+    };
+
+    this.map = function(func){
+        var answer = [];
+
+        for(var i = 0; i < this.array.length; i++){
+            answer.push(func(this.array[i]));
+        }
+
+        return new ArrayLibChain(answer);
+    };
+
+    this.reduce = function(func, initial = 0){
+        var answer = initial;
+
+        for(var i = 0; i < this.array.length; i++){
+            answer = func(answer, this.array[i]);
+        }
+
+        return new ArrayLibChain(answer);
+    };
+
+    this.filter = function(func){
+        var answer = [];
+
+        for(var i = 0; i < this.array.length; i++){
+            if(func(this.array[i])){
+                answer.push(this.array[i]);
+            }
+        }
+
+        return new ArrayLibChain(answer);
+    };
+
+    this.foreach = function(func){
+        for(var i = 0; i < this.array.length; i++){
+            func(this.array[i]);
+        }
+    };
+
+    this.value = function(){
+        return this.array;
+    };
 }
