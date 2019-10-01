@@ -1,3 +1,5 @@
+const ArrayLib = require("./ArrayLib.js");
+
 console.log(ArrayLib.take([1, 2, 3, 4], 2));
 console.log(ArrayLib.skip([1, 2, 3, 4], 2));
 console.log(ArrayLib.map([1, 2, 3], a => a * 2));
