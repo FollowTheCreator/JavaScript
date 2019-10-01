@@ -1,6 +1,14 @@
 const ArrayLibChain = require("./ArrayLibChain.js");
 
 const ArrayLib = {
+    cache:{},
+    sum(array){
+        if(array in this.cache){
+            return {source: "cache", data: this.cache[array]};
+        }
+        this.cache[array] = this.reduce(array, (sum, current) => sum + current);
+        return {source: "calculated", data: this.cache[array]};
+    },
     chain(array){
         return new ArrayLibChain(array);
     },

@@ -1,7 +1,16 @@
 module.exports = class ArrayLibChain{
     constructor(array){
         this.array = array;
-    }
+        this.cache = {};
+    };
+
+    sum(){
+        if(this.array in this.cache){
+            return {source: "cache", data: this.cache[this.array]};
+        }
+        this.cache[this.array] = this.reduce((sum, current) => sum + current).value();
+        return {source: "calculated", data: this.cache[this.array]};
+    };
 
     take(n){
         let answer = [];

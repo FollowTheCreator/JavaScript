@@ -9,3 +9,11 @@ ArrayLib.foreach([1, 2, 3], item => console.log(item));
 
 console.log(ArrayLib.chain([1, 2, 3, 4, 5, 6, 7, 8, 9]).take(8).skip(1).map(a => a * 2).filter(item => item > 5).reduce((sum, current) => sum + current, 0).value());
 ArrayLib.chain([1, 2, 3, 4, 5, 6, 7, 8, 9]).take(8).skip(1).map(a => a * 2).filter(item => item > 5).foreach(item => console.log(item));
+
+console.log(ArrayLib.sum([1, 2, 3, 4, 5]));
+console.log(ArrayLib.sum([1, 2, 3, 4, 5]));
+
+let array = ArrayLib.chain([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+console.log(array.sum());
+console.log(array.sum());
+debugger;
