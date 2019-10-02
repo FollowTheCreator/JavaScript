@@ -10,5 +10,4 @@ const filter = (array, callback) => {
     return result;
 }
 
-const array = [1, 2, 3, 4, 5];
-console.log(filter(array, (item) => item > 3));
+module.exports = filter;
