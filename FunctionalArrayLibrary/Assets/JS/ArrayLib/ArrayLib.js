@@ -12,56 +12,56 @@ const ArrayLib = {
     chain(array){
         return new ArrayLibChain(array);
     },
-    take(array, n){
-        let answer = [];
+    take(array = [], n = array.length){
+        let result = [];
         for(let i = 0; i < n && i < array.length; i++){
-            answer.push(array[i]);
+            result.push(array[i]);
         }
 
-        return answer;
+        return result;
     },
-    skip(array, n){
-        let answer = [];
+    skip(array = [], n = 0){
+        let result = [];
         if(n < 0){
             n = 0;
         }
 
         for(let i = n; i < array.length; i++){
-            answer.push(array[i]);
+            result.push(array[i]);
         }
 
-        return answer;
+        return result;
     },
-    map(array, func){
-        let answer = [];
+    map(array = [], func = (item) => item){
+        let result = [];
 
         for(let i = 0; i < array.length; i++){
-            answer.push(func(array[i]));
+            result.push(func(array[i]));
         }
 
-        return answer;
+        return result;
     },
-    reduce(array, func, initial = 0){
-        let answer = initial;
+    reduce(array = [], func = (result, current) => current, initial = 0){
+        let result = initial;
 
         for(let i = 0; i < array.length; i++){
-            answer = func(answer, array[i]);
+            result = func(result, array[i]);
         }
 
-        return answer;
+        return result;
     },
-    filter(array, func){
-        let answer = [];
+    filter(array = [], func = (item) => item){
+        let result = [];
 
         for(let i = 0; i < array.length; i++){
             if(func(array[i])){
-                answer.push(array[i]);
+                result.push(array[i]);
             }
         }
 
-        return answer;
+        return result;
     },
-    foreach(array, func){
+    foreach(array = [], func = (item) => item){
         for(let i = 0; i < array.length; i++){
             func(array[i]);
         }

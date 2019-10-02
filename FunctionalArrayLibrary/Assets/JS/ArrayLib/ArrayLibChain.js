@@ -1,5 +1,5 @@
 module.exports = class ArrayLibChain{
-    constructor(array){
+    constructor(array = []){
         this.array = array;
         this.cache = {};
     };
@@ -8,21 +8,22 @@ module.exports = class ArrayLibChain{
         if(this.array in this.cache){
             return {source: "cache", data: this.cache[this.array]};
         }
-        this.cache[this.array] = this.reduce((sum, current) => sum + current).value();
+        this.cache[this.array] = this.reduce((sum, current) => sum + current);
         return {source: "calculated", data: this.cache[this.array]};
     };
 
-    take(n){
+    take(n = this.array.length){
         let answer = [];
 
         for(let i = 0; i < n && i < this.array.length; i++){
             answer.push(this.array[i]);
         }
+        this.array = answer;
 
-        return new ArrayLibChain(answer);
+        return this;
     };
 
-    skip(n){
+    skip(n = 0){
         let answer = [];
         if(n < 0){
             n = 0;
@@ -31,31 +32,33 @@ module.exports = class ArrayLibChain{
         for(let i = n; i < this.array.length; i++){
             answer.push(this.array[i]);
         }
-
-        return new ArrayLibChain(answer);
+        this.array = answer;
+        
+        return this;
     };
 
-    map(func){
+    map(func = (item) => item){
         let answer = [];
 
         for(let i = 0; i < this.array.length; i++){
             answer.push(func(this.array[i]));
         }
-
-        return new ArrayLibChain(answer);
+        this.array = answer;
+        
+        return this;
     };
 
-    reduce(func, initial = 0){
+    reduce(func = (result, current) => current, initial = 0){
         let answer = initial;
 
         for(let i = 0; i < this.array.length; i++){
             answer = func(answer, this.array[i]);
         }
-
-        return new ArrayLibChain(answer);
+        
+        return answer;
     };
 
-    filter(func){
+    filter(func = (item) => item){
         let answer = [];
 
         for(let i = 0; i < this.array.length; i++){
@@ -63,11 +66,12 @@ module.exports = class ArrayLibChain{
                 answer.push(this.array[i]);
             }
         }
-
-        return new ArrayLibChain(answer);
+        this.array = answer;
+        
+        return this;
     };
 
-    foreach(func){
+    foreach(func = (item) => item){
         for(let i = 0; i < this.array.length; i++){
             func(this.array[i]);
         }
