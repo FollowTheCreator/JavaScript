@@ -8,3 +8,6 @@ console.log(result);
 const doubleTriple = partial(multiply, 2, 3);
 result = doubleTriple(4);
 console.log(result);
+
+result = doubleTriple(4, 10);
+console.log(result);
