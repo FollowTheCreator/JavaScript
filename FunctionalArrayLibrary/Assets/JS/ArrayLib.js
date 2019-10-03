@@ -25,29 +25,38 @@ var ArrayLib = {
     map(array, func){
         var answer = [];
 
-        for(var i = 0; i < array.length; i++){
-            answer.push(func(array[i]));
-        }
+        this.foreach(
+            array, 
+            function(item){
+                answer.push(func(item));
+            }
+        );
 
         return answer;
     },
     reduce(array, func, initial = 0){
         var answer = initial;
 
-        for(var i = 0; i < array.length; i++){
-            answer = func(answer, array[i]);
-        }
+        this.foreach(
+            array, 
+            function(item){
+                answer = func(answer, item);
+            }
+        );
 
         return answer;
     },
     filter(array, func){
         var answer = [];
 
-        for(var i = 0; i < array.length; i++){
-            if(func(array[i])){
-                answer.push(array[i]);
+        this.foreach(
+            array, 
+            function(item){
+                if(func(item)){
+                    answer.push(item);
+                }
             }
-        }
+        );
 
         return answer;
     },
@@ -87,9 +96,11 @@ function ArrayLibChain(array){
     this.map = function(func){
         var answer = [];
 
-        for(var i = 0; i < this.array.length; i++){
-            answer.push(func(this.array[i]));
-        }
+        this.foreach(
+            function(item){
+                answer.push(func(item));
+            }
+        );
 
         return new ArrayLibChain(answer);
     };
@@ -97,21 +108,25 @@ function ArrayLibChain(array){
     this.reduce = function(func, initial = 0){
         var answer = initial;
 
-        for(var i = 0; i < this.array.length; i++){
-            answer = func(answer, this.array[i]);
-        }
+        this.foreach(
+            function(item){
+                answer = func(answer, item);
+            }
+        );
 
-        return new ArrayLibChain(answer);
+        return answer;
     };
 
     this.filter = function(func){
         var answer = [];
 
-        for(var i = 0; i < this.array.length; i++){
-            if(func(this.array[i])){
-                answer.push(this.array[i]);
+        this.foreach(
+            function(item){
+                if(func(item)){
+                    answer.push(item);
+                }
             }
-        }
+        );
 
         return new ArrayLibChain(answer);
     };
