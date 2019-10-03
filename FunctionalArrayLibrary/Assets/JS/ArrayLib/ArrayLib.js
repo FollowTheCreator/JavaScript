@@ -35,29 +35,25 @@ const ArrayLib = {
     map(array = [], func = (item) => item){
         let result = [];
 
-        for(let i = 0; i < array.length; i++){
-            result.push(func(array[i]));
-        }
+        this.foreach(array, item => result.push(func(item)));
 
         return result;
     },
     reduce(array = [], func = (result, current) => current, initial = 0){
         let result = initial;
 
-        for(let i = 0; i < array.length; i++){
-            result = func(result, array[i]);
-        }
+        this.foreach(array, item => result = func(result, item));
 
         return result;
     },
     filter(array = [], func = (item) => item){
         let result = [];
-
-        for(let i = 0; i < array.length; i++){
-            if(func(array[i])){
-                result.push(array[i]);
+        
+        this.foreach(array, item => {
+            if(func(item)){
+                result.push(item);
             }
-        }
+        });
 
         return result;
     },

@@ -2,173 +2,114 @@ const assert = require("assert");
 const ArrayLib = require("../ArrayLib/ArrayLib");
 const ArrayLibChain = require("../ArrayLib/ArrayLibChain");
 
-const checkArraysEquality = function(array1, array2){
-    if(array1.length == array2.length && Array.isArray(array1) && Array.isArray(array2)) {
-        for(let i = 0; i < array1.length; i++){
-            if(array1[i] != array2[i]){
-                return false;
-            }
-        }
-
-        return true;
-    }
-    
-    return false;
-}
-
 describe('ArrayLib', function() {
     describe('take()', function() {
         it('returns [1, 2] array with ([1, 2, 3, 4], 2) arguments', function() {
-            assert.equal(
-                checkArraysEquality(
-                    ArrayLib.take([1, 2, 3, 4], 2), 
-                    [1, 2]
-                ),
-                true
+            assert.deepEqual(
+                ArrayLib.take([1, 2, 3, 4], 2), 
+                [1, 2]
             );
         });
 
         it('returns [1, 2, 3, 4] array with ([1, 2, 3, 4], 10) arguments', function() {
-            assert.equal(
-                checkArraysEquality(
-                    ArrayLib.take([1, 2, 3, 4], 10), 
-                    [1, 2, 3, 4]
-                ),
-                true
+            assert.deepEqual(
+                ArrayLib.take([1, 2, 3, 4], 10), 
+                [1, 2, 3, 4]
             );
         });
 
         it('returns [] array with ([1, 2, 3, 4], 0) arguments', function() {
-            assert.equal(
-                checkArraysEquality(
-                    ArrayLib.take([1, 2, 3, 4], 0), 
-                    []
-                ),
-                true
+            assert.deepEqual(
+                ArrayLib.take([1, 2, 3, 4], 0), 
+                []
             );
         });
 
         it('returns [] array with ([1, 2, 3, 4], -7) arguments', function() {
-            assert.equal(
-                checkArraysEquality(
-                    ArrayLib.take([1, 2, 3, 4], -7), 
-                    []
-                ),
-                true
+            assert.deepEqual(
+                ArrayLib.take([1, 2, 3, 4], -7), 
+                []
             );
         });
 
         it('returns [] array with () arguments', function() {
-            assert.equal(
-                checkArraysEquality(
-                    ArrayLib.take(), 
-                    []
-                ),
-                true
+            assert.deepEqual(
+                ArrayLib.take(), 
+                []
             );
         });
 
         it('returns [1, 2, 3, 4] array with ([1, 2, 3, 4]) arguments', function() {
-            assert.equal(
-                checkArraysEquality(
-                    ArrayLib.take([1, 2, 3, 4]), 
-                    [1, 2, 3, 4]
-                ),
-                true
+            assert.deepEqual(
+                ArrayLib.take([1, 2, 3, 4]), 
+                [1, 2, 3, 4]
             );
         });
     });
 
     describe('skip()', function() {
         it('returns [3, 4] array with ([1, 2, 3, 4], 2) arguments', function() {
-            assert.equal(
-                checkArraysEquality(
-                    ArrayLib.skip([1, 2, 3, 4], 2), 
-                    [3, 4]
-                ),
-                true
+            assert.deepEqual(
+                ArrayLib.skip([1, 2, 3, 4], 2), 
+                [3, 4]
             );
         });
 
         it('returns [] array with ([1, 2, 3, 4], 10) arguments', function() {
-            assert.equal(
-                checkArraysEquality(
-                    ArrayLib.skip([1, 2, 3, 4], 10), 
-                    []
-                ),
-                true
+            assert.deepEqual(
+                ArrayLib.skip([1, 2, 3, 4], 10), 
+                []
             );
         });
 
         it('returns [1, 2, 3, 4] array with ([1, 2, 3, 4], 0) arguments', function() {
-            assert.equal(
-                checkArraysEquality(
-                    ArrayLib.skip([1, 2, 3, 4], 0), 
-                    [1, 2, 3, 4]
-                ),
-                true
+            assert.deepEqual(
+                ArrayLib.skip([1, 2, 3, 4], 0), 
+                [1, 2, 3, 4]
             );
         });
 
         it('returns [1, 2, 3, 4] array with ([1, 2, 3, 4], -7) arguments', function() {
-            assert.equal(
-                checkArraysEquality(
-                    ArrayLib.skip([1, 2, 3, 4], -7), 
-                    [1, 2, 3, 4]
-                ),
-                true
+            assert.deepEqual(
+                ArrayLib.skip([1, 2, 3, 4], -7), 
+                [1, 2, 3, 4]
             );
         });
 
         it('returns [] array with () arguments', function() {
-            assert.equal(
-                checkArraysEquality(
-                    ArrayLib.skip(), 
-                    []
-                ),
-                true
+            assert.deepEqual(
+                ArrayLib.skip(), 
+                []
             );
         });
 
         it('returns [1, 2, 3, 4] array with ([1, 2, 3, 4]) arguments', function() {
-            assert.equal(
-                checkArraysEquality(
-                    ArrayLib.skip([1, 2, 3, 4]), 
-                    [1, 2, 3, 4]
-                ),
-                true
+            assert.deepEqual(
+                ArrayLib.skip([1, 2, 3, 4]), 
+                [1, 2, 3, 4]
             );
         });
     });
 
     describe('map()', function() {
         it('returns [2, 4, 6] array with ([1, 2, 3], a => a * 2) arguments', function() {
-            assert.equal(
-                checkArraysEquality(
-                    ArrayLib.map([1, 2, 3], a => a * 2), 
-                    [2, 4, 6]
-                ),
-                true
+            assert.deepEqual(
+                ArrayLib.map([1, 2, 3], a => a * 2), 
+                [2, 4, 6]
             );
         });
 
         it('returns [] array with () arguments', function() {
-            assert.equal(
-                checkArraysEquality(
-                    ArrayLib.map(), 
-                    []
-                ),
-                true
+            assert.deepEqual(
+                ArrayLib.map(), 
+                []
             );
         });
 
         it('returns [1, 2, 3] array with ([1, 2, 3]) arguments', function() {
-            assert.equal(
-                checkArraysEquality(
-                    ArrayLib.map([1, 2, 3]), 
-                    [1, 2, 3]
-                ),
-                true
+            assert.deepEqual(
+                ArrayLib.map([1, 2, 3]), 
+                [1, 2, 3]
             );
         });
     });
@@ -205,32 +146,23 @@ describe('ArrayLib', function() {
 
     describe('filter()', function() {
         it('returns [4, 5] array with ([1, 2, 3, 4, 5], item => item > 3) arguments', function() {
-            assert.equal(
-                checkArraysEquality(
-                    ArrayLib.filter([1, 2, 3, 4, 5], item => item > 3), 
-                    [4, 5]
-                ),
-                true
+            assert.deepEqual(
+                ArrayLib.filter([1, 2, 3, 4, 5], item => item > 3),
+                [4, 5]
             );
         });
 
         it('returns [1, 2, 3, 4, 5] array with ([1, 2, 3, 4, 5]) arguments', function() {
-            assert.equal(
-                checkArraysEquality(
-                    ArrayLib.filter([1, 2, 3, 4, 5]), 
-                    [1, 2, 3, 4, 5]
-                ),
-                true
+            assert.deepEqual(
+                ArrayLib.filter([1, 2, 3, 4, 5]),
+                [1, 2, 3, 4, 5]
             );
         });
 
         it('returns [] array with () arguments', function() {
-            assert.equal(
-                checkArraysEquality(
-                    ArrayLib.filter(), 
-                    []
-                ),
-                true
+            assert.deepEqual(
+                ArrayLib.filter(),
+                []
             );
         });
     });
@@ -239,12 +171,9 @@ describe('ArrayLib', function() {
         it('returns [1, 2, 3, 4, 5] array with ([1, 2, 3, 4, 5], item => testArray.push(item)) arguments', function() {
             const testArray = [];
             ArrayLib.foreach([1, 2, 3, 4, 5], item => testArray.push(item));
-            assert.equal(
-                checkArraysEquality(
-                    testArray, 
-                    [1, 2, 3, 4, 5]
-                ),
-                true
+            assert.deepEqual(
+                testArray,
+                [1, 2, 3, 4, 5]
             );
         });
 
@@ -294,23 +223,17 @@ describe('ArrayLib', function() {
     describe('chain()', function() {
         it('result.array == [1, 2, 3, 4, 5] with ([1, 2, 3, 4, 5]) arguments', function() {
             const result = ArrayLib.chain([1, 2, 3, 4, 5]);
-            assert.equal(
-                checkArraysEquality(
-                    result.array, 
-                    [1, 2, 3, 4, 5]
-                ),
-                true
+            assert.deepEqual(
+                result.array,
+                [1, 2, 3, 4, 5]
             );
         });
 
         it('result.array == [] with () arguments', function() {
             const result = ArrayLib.chain();
-            assert.equal(
-                checkArraysEquality(
-                    result.array, 
-                    []
-                ),
-                true
+            assert.deepEqual(
+                result.array,
+                []
             );
         });
 

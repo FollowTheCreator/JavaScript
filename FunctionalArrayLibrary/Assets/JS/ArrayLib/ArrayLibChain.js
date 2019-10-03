@@ -40,9 +40,8 @@ module.exports = class ArrayLibChain{
     map(func = (item) => item){
         let answer = [];
 
-        for(let i = 0; i < this.array.length; i++){
-            answer.push(func(this.array[i]));
-        }
+        this.foreach(item => answer.push(func(item)));
+
         this.array = answer;
         
         return this;
@@ -51,9 +50,7 @@ module.exports = class ArrayLibChain{
     reduce(func = (result, current) => current, initial = 0){
         let answer = initial;
 
-        for(let i = 0; i < this.array.length; i++){
-            answer = func(answer, this.array[i]);
-        }
+        this.foreach(item => answer = func(answer, item));
         
         return answer;
     };
@@ -61,11 +58,11 @@ module.exports = class ArrayLibChain{
     filter(func = (item) => item){
         let answer = [];
 
-        for(let i = 0; i < this.array.length; i++){
-            if(func(this.array[i])){
-                answer.push(this.array[i]);
+        this.foreach(item => {
+            if(func(item)){
+                answer.push(item);
             }
-        }
+        });
         this.array = answer;
         
         return this;
@@ -80,4 +77,10 @@ module.exports = class ArrayLibChain{
     value(){
         return this.array;
     };
+
+    *[Symbol.iterator](){
+        for(let i = 0; i < this.array; i++){
+            yield this.array[i];
+        }
+    }
 }
