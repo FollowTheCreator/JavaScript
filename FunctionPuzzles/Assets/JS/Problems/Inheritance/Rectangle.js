@@ -1,7 +1,7 @@
 const Shape = require("./Shape.js");
 
 class Rectangle extends Shape{
-    constructor(name, width, height){
+    constructor(name, width = 0, height = 0){
         super(name);
         this.width = width;
         this.height = height;

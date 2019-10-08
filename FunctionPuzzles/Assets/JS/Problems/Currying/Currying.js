@@ -1,5 +1,9 @@
 function curry(func) {
     return function curried(...args) {
+        if(typeof func !== "function"){
+            return () => null;
+        }
+
         if (args.length >= func.length) {
             return func.apply(this, args);
         } 
@@ -11,9 +15,4 @@ function curry(func) {
     };
 }
 
-const sum = (a, b, c) => a + b + c;
-
-let curriedSum = curry(sum);
-
-const x = curriedSum(1)(4, 5);
-console.log(x);
+module.exports = curry;

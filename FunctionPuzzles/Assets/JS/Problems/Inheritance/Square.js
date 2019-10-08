@@ -1,7 +1,7 @@
 const Shape = require("./Shape.js");
 
 class Square extends Shape{
-    constructor(name, sideLength){
+    constructor(name, sideLength = 0){
         super(name);
         this.sideLength = sideLength;
     }

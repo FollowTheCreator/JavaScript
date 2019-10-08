@@ -1,4 +1,4 @@
-const partial = (func, ...args) => (...rest) => func(...args.concat(rest));
+const partial = require("./PartialApplication.js");
 const multiply = (...args) => args.reduce((result, current) => result * current);
 
 const double = partial(multiply, 2);

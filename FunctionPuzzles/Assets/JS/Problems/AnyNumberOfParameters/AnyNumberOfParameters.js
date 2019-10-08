@@ -6,4 +6,4 @@ const multiply = (...args) => {
     return args.reduce((result, current) => result * current); 
 };
 
-console.log(multiply(2, 4, 7));
+module.exports = multiply;

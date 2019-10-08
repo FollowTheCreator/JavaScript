@@ -1,4 +1,4 @@
-const map = (array, callback) => {
+const map = (array = [], callback = (item) => item) => {
     let result = [];
 
     for(let i = 0; i < array.length; i++){
@@ -8,5 +8,4 @@ const map = (array, callback) => {
     return result;
 }
 
-const array = [1, 2, 3, 4, 5];
-console.log(map(array, (item) => item * 2));
+module.exports = map;
