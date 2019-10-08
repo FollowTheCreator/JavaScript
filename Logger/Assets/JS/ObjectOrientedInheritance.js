@@ -1,7 +1,3 @@
-const formatDate = (date) => {
-    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}, ${date.toLocaleString(("en-US"), {hour: "numeric", minute: "numeric", second: "numeric", hour12: true})}`;
-}
-
 class Logger{
     log(message) { 
         console.log(message);
@@ -16,8 +12,12 @@ class TableLogger extends Logger{
 }
 
 class TimeTableLogger extends TableLogger{
+    formatDate(date){
+        return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}, ${date.toLocaleString(("en-US"), {hour: "numeric", minute: "numeric", second: "numeric", hour12: true})}`;
+    }
+
     log(...args){
-        const timeMessage = formatDate(new Date());
+        const timeMessage = this.formatDate(new Date());
         super.log(timeMessage, ...args);
     }
 }

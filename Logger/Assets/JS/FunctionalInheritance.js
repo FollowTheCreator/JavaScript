@@ -1,7 +1,3 @@
-const formatDate = (date) => {
-    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}, ${date.toLocaleString(("en-US"), {hour: "numeric", minute: "numeric", second: "numeric", hour12: true})}`;
-}
-
 const Logger = function(){
     this.log = (message) => console.log(message);
 }
@@ -21,9 +17,11 @@ const TableTimeLogger = function(){
 
     const parentLog = this.log;
     this.log = (...args) => {
-        const timeMessage = formatDate(new Date());
+        const timeMessage = this.formatDate(new Date());
         parentLog(timeMessage, ...args);
     }
+
+    this.formatDate = (date) => `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}, ${date.toLocaleString(("en-US"), {hour: "numeric", minute: "numeric", second: "numeric", hour12: true})}`
 }
 
 let logger = new Logger();

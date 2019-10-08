@@ -1,7 +1,3 @@
-const formatDate = (date) => {
-    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}, ${date.toLocaleString(("en-US"), {hour: "numeric", minute: "numeric", second: "numeric", hour12: true})}`;
-}
-
 const Logger = {
     log(message) { 
         console.log(message);
@@ -20,11 +16,14 @@ const TableLogger = Object.create(Logger, {
 const TimeTableLogger = Object.create(TableLogger, {
     log: {
         value: (...args) => {
-            const timeMessage = formatDate(new Date());
+            const date = new Date();
+            const timeMessage = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}, ${date.toLocaleString(("en-US"), {hour: "numeric", minute: "numeric", second: "numeric", hour12: true})}`;
             TableLogger.log(timeMessage, ...args);
         }
     }
 });
+
+console.log(Object.getPrototypeOf(TimeTableLogger) === TableLogger);
 
 Logger.log("Hello World!");
 
