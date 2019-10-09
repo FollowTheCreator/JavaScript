@@ -1,3 +1,5 @@
+const DEBUG = true;
+
 const memo = (func) => {
     const cache = new WeakMap();
 
@@ -8,13 +10,13 @@ const memo = (func) => {
 
         if(args in cache){
             const result = cache[args];
-            console.log("cache");
+            if(DEBUG) console.log("cache");
             return result;
         }
         
         cache[args] = func(...args);
         const result = cache[args]
-        console.log("calculated");
+        if(DEBUG) console.log("calculated");
         return result;
     }
 }
